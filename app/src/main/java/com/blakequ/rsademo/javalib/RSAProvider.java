@@ -1,4 +1,8 @@
-package com.blakequ.rsa;
+package com.blakequ.rsademo.javalib;
+
+import com.blakequ.rsa.ArrayUtils;
+import com.blakequ.rsa.Base64Utils;
+import com.blakequ.rsa.FileUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -176,9 +180,9 @@ public class RSAProvider {
         }
         byte[] encode = new byte[] {};
         for (int i = 0; i < encryptedData.length; i += encodeLen) {
-            byte[] subarray = ArrayUtils.subarray(encryptedData, i, i + encodeLen);
+            byte[] subarray = com.blakequ.rsa.ArrayUtils.subarray(encryptedData, i, i + encodeLen);
             byte[] doFinal = encryptByPrivateKey(subarray, key);
-            encode = ArrayUtils.addAll(encode, doFinal);
+            encode = com.blakequ.rsa.ArrayUtils.addAll(encode, doFinal);
         }
         return encode;
     }
@@ -196,9 +200,9 @@ public class RSAProvider {
         }
         byte [] buffers = new byte[]{};
         for (int i = 0; i < encode.length; i += decodeLen) {
-            byte[] subarray = ArrayUtils.subarray(encode, i, i + decodeLen);
+            byte[] subarray = com.blakequ.rsa.ArrayUtils.subarray(encode, i, i + decodeLen);
             byte[] doFinal = decryptByPublicKey(subarray, key);
-            buffers = ArrayUtils.addAll(buffers, doFinal);
+            buffers = com.blakequ.rsa.ArrayUtils.addAll(buffers, doFinal);
         }
         return buffers;
     }
@@ -217,9 +221,9 @@ public class RSAProvider {
         }
         byte[] encode = new byte[] {};
         for (int i = 0; i < encryptedData.length; i += encodeLen) {
-            byte[] subarray = ArrayUtils.subarray(encryptedData, i, i + encodeLen);
+            byte[] subarray = com.blakequ.rsa.ArrayUtils.subarray(encryptedData, i, i + encodeLen);
             byte[] doFinal = encryptByPublicKey(subarray, key);
-            encode = ArrayUtils.addAll(encode, doFinal);
+            encode = com.blakequ.rsa.ArrayUtils.addAll(encode, doFinal);
         }
         return encode;
     }
@@ -237,7 +241,7 @@ public class RSAProvider {
         }
         byte [] buffers = new byte[]{};
         for (int i = 0; i < encode.length; i += decodeLen) {
-            byte[] subarray = ArrayUtils.subarray(encode, i, i + decodeLen);
+            byte[] subarray = com.blakequ.rsa.ArrayUtils.subarray(encode, i, i + decodeLen);
             byte[] doFinal = decryptByPrivateKey(subarray, key);
             buffers = ArrayUtils.addAll(buffers, doFinal);
         }
