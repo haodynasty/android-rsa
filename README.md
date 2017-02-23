@@ -25,6 +25,8 @@ maven
 # How to use
 you can download example and study how to use
 
+For server code, you can find in example:com/blakequ/rsademo/javalib
+
 ## 1. set key
 
 ```

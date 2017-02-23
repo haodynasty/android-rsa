@@ -76,6 +76,10 @@ public class RSAProvider {
      * 签名算法
      */
     public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
+    /**
+     * 加密填充方式,android系统的RSA实现是"RSA/None/NoPadding"，而标准JDK实现是"RSA/None/PKCS1Padding" ，这造成了在android机上加密后无法在服务器上解密的原因
+     */
+    public static final String ECB_PKCS1_PADDING = "RSA/ECB/PKCS1Padding";
 
     /**
      *
@@ -341,7 +345,7 @@ public class RSAProvider {
         //取得私钥
         Key privateKey = loadPrivateKey(key);
         // 对数据解密
-        Cipher cipher = Cipher.getInstance(privateKey.getAlgorithm());
+        Cipher cipher = Cipher.getInstance(ECB_PKCS1_PADDING);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
         return cipher.doFinal(data);
@@ -362,7 +366,7 @@ public class RSAProvider {
         //取得公钥
         Key publicKey = loadPublicKey(key);
         // 对数据解密
-        Cipher cipher = Cipher.getInstance(publicKey.getAlgorithm());
+        Cipher cipher = Cipher.getInstance(ECB_PKCS1_PADDING);//publicKey.getAlgorithm()
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
 
         return cipher.doFinal(data);
@@ -383,7 +387,7 @@ public class RSAProvider {
         // 取得公钥
         Key publicKey = loadPublicKey(key);
         // 对数据加密
-        Cipher cipher = Cipher.getInstance(publicKey.getAlgorithm());
+        Cipher cipher = Cipher.getInstance(ECB_PKCS1_PADDING);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
         return cipher.doFinal(data);
@@ -404,7 +408,7 @@ public class RSAProvider {
         // 取得私钥
         Key privateKey = loadPrivateKey(key);
         // 对数据加密
-        Cipher cipher = Cipher.getInstance(privateKey.getAlgorithm());
+        Cipher cipher = Cipher.getInstance(ECB_PKCS1_PADDING);
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
 
         return cipher.doFinal(data);

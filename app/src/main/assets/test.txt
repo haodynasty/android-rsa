@@ -1,1 +1,11 @@
-this is file
+--#start#! /usr/local/bin/lua
+
+-- Created by IntelliJ IDEA.
+-- User: quhao
+-- Date: 2015/10/16
+-- Time: 11:41
+-- To change this template use File | Settings | File Templates.
+
+--[[---------------globle var and method-----------------------------------------]]
+-- the array max length, you can define
+-----------Print 函数重写---------------------
