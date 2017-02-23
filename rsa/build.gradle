@@ -20,6 +20,17 @@ android {
     }
 }
 
+task jarLib(type: Jar, dependsOn: ['build']) {
+    archiveName = 'rsa_encrypt.jar'
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('com/nought/hellolib/BuildConfig.class')
+    exclude('com/nought/hellolib/BuildConfig\$*.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+//    include('com/nought/hellolib/*.class')
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

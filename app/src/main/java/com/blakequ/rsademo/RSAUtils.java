@@ -1,4 +1,4 @@
-package com.example.rsa;
+package com.blakequ.rsademo;
 
 
 import com.blakequ.rsa.Base64Utils;
