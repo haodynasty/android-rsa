@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION as String
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME as String
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+}
+
+//执行bintrayUpload之前必须执行gradlew install生成poms文件（build/poms）
+if (isForUpload2Maven()) {
+    println ':library:include upload 2 maven methods'
+    apply from: 'https://raw.githubusercontent.com/haodynasty/JCenter/master/installv1.gradle'
+    apply from: 'https://raw.githubusercontent.com/haodynasty/JCenter/master/bintrayv1.gradle'
+    apply from: 'https://raw.githubusercontent.com/haodynasty/JCenter/master/license.gradle'
+}
