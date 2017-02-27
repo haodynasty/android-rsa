@@ -31,16 +31,21 @@ For server code, you can find in example:com/blakequ/rsademo/javalib
 
 ```
 FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
+//1.you can use generate public and private key
 mFileEncryptionManager.generateKey();
 //you can invoke getPublickey() and getPrivateKey() to save key to local file
-mFileEncryptionManager.setRSAKey(String, String);
+
+//or 2.set public key and private key by youself(not use auto generate key)
+mFileEncryptionManager.setRSAKey(String publicKey, String privateKey);
+mFileEncryptionManager.setRSAKey(RSAPublicKey publicKey, RSAPrivateKey privateKey)
 ```
 
 ## 2. encrypt file or data
 ```
 byte[] data = FileUtils.getBytesFromInputStream(getResources().getAssets().open("*.txt"));
+//from byte array
 byte[] result = mFileEncryptionManager.encryptFileByPublicKey(data, saveEncryFile);
-//from file
+//or from file
 byte[] result = mFileEncryptionManager.encryptFileByPublicKey(ogirialFile, saveEncryFile);
 ```
 
